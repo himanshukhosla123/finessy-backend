@@ -11,7 +11,9 @@ public class StudentDAOImpl implements IStudentDAO{
 	@Override
 	public ArrayList<StudentDTO> readAll() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<StudentDTO> x=new ArrayList<StudentDTO>();
+		x.add(new StudentDTO("hi"));
+		return x;
 	}
 
 	@Override
