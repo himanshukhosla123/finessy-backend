@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import com.finessy.admin.CommonDAO;
 import com.finessy.admin.DTO.StudentDTO;
 import com.finessy.admin.Interfaces.IStudentDAO;
-import com.finessy.admin.Interfaces.IStudentSQL;
+import com.finessy.admin.QueriesSQL.IStudentSQL;
 
-public class StudentDAOImpl implements IStudentDAO{
+public class StudentDAOImpl implements IStudentDAO {
 
 	Connection con = null;
 	PreparedStatement ps = null;

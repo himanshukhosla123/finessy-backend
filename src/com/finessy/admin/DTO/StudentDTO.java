@@ -2,20 +2,6 @@ package com.finessy.admin.DTO;
 
 public class StudentDTO {
 
-//	student_id` INT(10) NOT NULL AUTO_INCREMENT,
-//	  `student_name` VARCHAR(50) NOT NULL,
-//	  `email` VARCHAR(50) NOT NULL,
-//	  `age` INT(3) NOT NULL,
-//	  `looking_for` VARCHAR(10) NULL,
-//	  `country` VARCHAR(30) NOT NULL,
-//	  `planned_year_of_higher_study` VARCHAR(4) NOT NULL,
-//	  `work_ex` VARCHAR(50) NULL,
-//	  `toefl/ielts` VARCHAR(10) NULL,
-//	  `gpa` VARCHAR(2) NULL,
-//	  `exam_scores` VARCHAR(5) NULL,
-//	  `verbal_scores` VARCHAR(5) NULL,
-//	  `other_details` VARCHAR(150) NOT NULL,
-	
 	private int studentId;
 	private String studentName;
 	private String email;
@@ -30,9 +16,7 @@ public class StudentDTO {
 	private String verbalScores;
 	private String otherDetails;
 	
-	public StudentDTO() {
-		
-	}
+	public StudentDTO() {}
 
 	public StudentDTO(int studentId, String studentName, String email, int age, String lookingFor, String country,
 			String plannedYearOfHigherStudies, String workEx, String toeflIelts, String gpa, String examScores,
@@ -155,6 +139,15 @@ public class StudentDTO {
 
 	public void setOtherDetails(String otherDetails) {
 		this.otherDetails = otherDetails;
+	}
+
+	@Override
+	public String toString() {
+		return "StudentDTO [studentId=" + studentId + ", studentName=" + studentName + ", email=" + email + ", age="
+				+ age + ", lookingFor=" + lookingFor + ", country=" + country + ", plannedYearOfHigherStudies="
+				+ plannedYearOfHigherStudies + ", workEx=" + workEx + ", toeflIelts=" + toeflIelts + ", gpa=" + gpa
+				+ ", examScores=" + examScores + ", verbalScores=" + verbalScores + ", otherDetails=" + otherDetails
+				+ "]";
 	}
 
 }
