@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.finessy.admin.CommonDAO;
 import com.finessy.admin.DTO.StudentDTO;
 import com.finessy.admin.Interfaces.IStudentDAO;
+import com.finessy.admin.Interfaces.IStudentSQL;
 
 public class StudentDAOImpl implements IStudentDAO{
 
@@ -18,11 +19,10 @@ public class StudentDAOImpl implements IStudentDAO{
 
 	@Override
 	public ArrayList<StudentDTO> readAll() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		ArrayList<StudentDTO> studentList = new ArrayList<StudentDTO>();
 		try {
 			con = CommonDAO.getConnection();
-//			ps = con.prepareStatement(IFee.READ_ALL_FEE);
+			ps = con.prepareStatement(IStudentSQL.READ_ALL_STUDENT);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				studentList.add(new StudentDTO());
@@ -44,23 +44,22 @@ public class StudentDAOImpl implements IStudentDAO{
 
 	@Override
 	public StudentDTO add(StudentDTO studentDTO) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		try {
 			con = CommonDAO.getConnection();
-//			ps = con.prepareStatement(IFee.CREATE_FEE);
-//			ps.setString(1, "101");
-//			ps.setString(2, studentDTO.getSID());
-//			ps.setString(3, studentDTO.getBID());
-//			ps.setString(4, "101");
-//			ps.setDouble(5, studentDTO.getCourseAmount());
-//			ps.setDouble(6, 101);
-//			ps.setString(7, studentDTO.getPaymentMode());
-//			ps.setString(8, "101");
-//			ps.setDate(9, new java.sql.Date(CustomDateFormat.getDate(studentDTO.getPaymentDate()).getTime()));
-//			ps.setDate(10, new java.sql.Date(CustomDateFormat.getDate(studentDTO.getInstallmentDate()).getTime()));
-//			ps.setDouble(11, studentDTO.getPayment());
-//			ps.setDouble(12, studentDTO.getBalance());
-//			ps.setString(13, "101");
+			ps = con.prepareStatement(IStudentSQL.ADD_STUDENT);
+			ps.setInt(1, studentDTO.getStudentId());
+			ps.setString(2, studentDTO.getStudentName());
+			ps.setString(3, studentDTO.getEmail());
+			ps.setInt(4, studentDTO.getAge());
+			ps.setString(5, studentDTO.getLookingFor());
+			ps.setString(6, studentDTO.getCountry());
+			ps.setString(7, studentDTO.getPlannedYearOfHigherStudies());
+			ps.setString(8, studentDTO.getWorkEx());
+			ps.setString(9, studentDTO.getToeflIelts());
+			ps.setString(10, studentDTO.getGpa());
+			ps.setString(11, studentDTO.getExamScores());
+			ps.setString(12, studentDTO.getVerbalScores());
+			ps.setString(13, studentDTO.getOtherDetails());
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}
@@ -80,11 +79,10 @@ public class StudentDAOImpl implements IStudentDAO{
 
 	@Override
 	public StudentDTO read(StudentDTO studentDTO) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		try {
 			con = CommonDAO.getConnection();
-//			ps = con.prepareStatement(IFee.READ_FEE);
-			ps.setString(1, "101");
+			ps = con.prepareStatement(IStudentSQL.READ_STUDENT);
+			ps.setInt(1, studentDTO.getStudentId());
 			rs = ps.executeQuery();
 			rs.next();
 			studentDTO = new StudentDTO();
@@ -105,24 +103,23 @@ public class StudentDAOImpl implements IStudentDAO{
 
 	@Override
 	public StudentDTO update(StudentDTO studentDTO) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		try {
 			con = CommonDAO.getConnection();
-//			ps = con.prepareStatement(IFee.UPDATE_FEE);
-//			ps.setString(1, studentDTO.getTID());
-//			ps.setString(2, studentDTO.getSID());
-//			ps.setString(3, studentDTO.getBID());
-//			ps.setString(4, studentDTO.getCID());
-//			ps.setDouble(5, studentDTO.getCourseAmount());
-//			ps.setDouble(6, studentDTO.getPayableAmount());
-//			ps.setString(7, studentDTO.getPaymentMode());
-//			ps.setString(8, studentDTO.getChequeId());
-//			ps.setDate(9, new java.sql.Date(CustomDateFormat.getDate(studentDTO.getPaymentDate()).getTime()));
-//			ps.setDate(10, new java.sql.Date(CustomDateFormat.getDate(studentDTO.getInstallmentDate()).getTime()));
-//			ps.setDouble(11, studentDTO.getPayment());
-//			ps.setDouble(12, studentDTO.getBalance());
-//			ps.setString(13, studentDTO.getStatus());
-//			ps.setString(14, studentDTO.getTID());
+			ps = con.prepareStatement(IStudentSQL.UPDATE_STUDENT);
+			ps.setInt(1, studentDTO.getStudentId());
+			ps.setString(2, studentDTO.getStudentName());
+			ps.setString(3, studentDTO.getEmail());
+			ps.setInt(4, studentDTO.getAge());
+			ps.setString(5, studentDTO.getLookingFor());
+			ps.setString(6, studentDTO.getCountry());
+			ps.setString(7, studentDTO.getPlannedYearOfHigherStudies());
+			ps.setString(8, studentDTO.getWorkEx());
+			ps.setString(9, studentDTO.getToeflIelts());
+			ps.setString(10, studentDTO.getGpa());
+			ps.setString(11, studentDTO.getExamScores());
+			ps.setString(12, studentDTO.getVerbalScores());
+			ps.setString(13, studentDTO.getOtherDetails());
+			ps.setInt(14, studentDTO.getStudentId());
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}
@@ -142,11 +139,10 @@ public class StudentDAOImpl implements IStudentDAO{
 
 	@Override
 	public StudentDTO delete(StudentDTO studentDTO) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		try {
 			con = CommonDAO.getConnection();
-//			ps = con.prepareStatement(IFee.DELETE_FEE);
-//			ps.setString(1, studentDTO.getTID());
+			ps = con.prepareStatement(IStudentSQL.DELETE_STUDENT);
+			ps.setInt(1, studentDTO.getStudentId());
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}
