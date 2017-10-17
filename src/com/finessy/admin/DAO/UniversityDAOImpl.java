@@ -25,7 +25,11 @@ public class UniversityDAOImpl implements IUniversityDAO{
 			ps = con.prepareStatement(IUniversitySQL.READ_ALL_UNIVERSITY);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				universityList.add(new UniversityDTO());
+				universityList.add(new UniversityDTO(rs.getInt("university_id"), rs.getString("university_name"), rs.getString("campus_size"),
+						rs.getDate("founded"), rs.getString("type"), rs.getString("map_location"), rs.getString("symbol"), rs.getString("endowment"),
+						rs.getString("graduate_employbility_ranking"), rs.getInt("total_students"), rs.getInt("total_undergraduate_students"),
+						rs.getInt("total_graduate_students"), rs.getString("ranking"), rs.getString("percentage_of_international_students"),
+						rs.getString("student_groups"), rs.getString("safety_issues"), rs.getString("acceptance_rate"), rs.getString("contact_details")));
 			}
 			return universityList;
 		}
@@ -90,7 +94,11 @@ public class UniversityDAOImpl implements IUniversityDAO{
 			ps.setInt(1, universityDTO.getUniversityId());
 			rs = ps.executeQuery();
 			rs.next();
-			universityDTO = new UniversityDTO();
+			universityDTO = new UniversityDTO(rs.getInt("university_id"), rs.getString("university_name"), rs.getString("campus_size"),
+					rs.getDate("founded"), rs.getString("type"), rs.getString("map_location"), rs.getString("symbol"), rs.getString("endowment"),
+					rs.getString("graduate_employbility_ranking"), rs.getInt("total_students"), rs.getInt("total_undergraduate_students"),
+					rs.getInt("total_graduate_students"), rs.getString("ranking"), rs.getString("percentage_of_international_students"),
+					rs.getString("student_groups"), rs.getString("safety_issues"), rs.getString("acceptance_rate"), rs.getString("contact_details"));
 			return universityDTO;
 		}
 		finally {

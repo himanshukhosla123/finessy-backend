@@ -2,7 +2,7 @@ package com.finessy.admin.QueriesSQL;
 
 public interface IStudentSQL {
     
-	String ADD_STUDENT = "INSERT INTO student_details(`student_id`, `student_name`, `email`, `age`, `looking_for`,"
+	String ADD_STUDENT = "INSERT INTO student_details(`student_id`, `student_name`, `age`, `looking_for`,"
 			+ "`country`, `planned_year_of_higher_study`, `work_ex`, `toefl/ielts`, `gpa`, `exam_scores`, `verbal_scores`,"
 			+ " `other_details`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
 	
@@ -10,7 +10,7 @@ public interface IStudentSQL {
 	
 	String READ_STUDENT = "SELECT * FROM student_details WHERE student_id=?;";
 	
-	String UPDATE_STUDENT = "UPDATE student_details SET student_id=? student_name=? email=? age=? looking_for=? country=?"
+	String UPDATE_STUDENT = "UPDATE student_details SET student_id=? student_name=? age=? looking_for=? country=?"
 			+ " planned_year_of_higher_study=? work_ex=? toefl/ielts=? gpa=? exam_scores=? verbal_scores=? other_details=?"
 			+ " WHERE student_id=?;";
 	

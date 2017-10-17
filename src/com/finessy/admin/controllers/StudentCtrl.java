@@ -21,7 +21,7 @@ public class StudentCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		StudentDAOImpl studentDAO=new StudentDAOImpl();
+		StudentDAOImpl studentDAO = new StudentDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;

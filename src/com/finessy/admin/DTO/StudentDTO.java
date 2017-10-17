@@ -4,7 +4,6 @@ public class StudentDTO {
 
 	private int studentId;
 	private String studentName;
-	private String email;
 	private int age;
 	private String lookingFor;
 	private String country;
@@ -18,13 +17,12 @@ public class StudentDTO {
 	
 	public StudentDTO() {}
 
-	public StudentDTO(int studentId, String studentName, String email, int age, String lookingFor, String country,
+	public StudentDTO(int studentId, String studentName, int age, String lookingFor, String country,
 			String plannedYearOfHigherStudies, String workEx, String toeflIelts, String gpa, String examScores,
 			String verbalScores, String otherDetails) {
 		super();
 		this.studentId = studentId;
 		this.studentName = studentName;
-		this.email = email;
 		this.age = age;
 		this.lookingFor = lookingFor;
 		this.country = country;
@@ -51,14 +49,6 @@ public class StudentDTO {
 
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public int getAge() {
@@ -143,7 +133,7 @@ public class StudentDTO {
 
 	@Override
 	public String toString() {
-		return "StudentDTO [studentId=" + studentId + ", studentName=" + studentName + ", email=" + email + ", age="
+		return "StudentDTO [studentId=" + studentId + ", studentName=" + studentName + ", age="
 				+ age + ", lookingFor=" + lookingFor + ", country=" + country + ", plannedYearOfHigherStudies="
 				+ plannedYearOfHigherStudies + ", workEx=" + workEx + ", toeflIelts=" + toeflIelts + ", gpa=" + gpa
 				+ ", examScores=" + examScores + ", verbalScores=" + verbalScores + ", otherDetails=" + otherDetails

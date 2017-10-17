@@ -48,7 +48,7 @@ public class CountryDTO {
 		this.studentSatisfactionIndex = studentSatisfactionIndex;
 		this.easeOfSettlement = easeOfSettlement;
 		this.easeOfBusiness = easeOfBusiness;
-		expenseForInternationalStudents = expenseForInternationalStudents;
+		this.expenseForInternationalStudents = expenseForInternationalStudents;
 		this.bestThing = bestThing;
 		this.smokingDrinkingLaws = smokingDrinkingLaws;
 		this.currencyStrength = currencyStrength;
@@ -175,7 +175,7 @@ public class CountryDTO {
 	}
 
 	public void setExpenseForInternationalStudents(int expenseForInternationalStudents) {
-		expenseForInternationalStudents = expenseForInternationalStudents;
+		this.expenseForInternationalStudents = expenseForInternationalStudents;
 	}
 
 	public String getBestThing() {

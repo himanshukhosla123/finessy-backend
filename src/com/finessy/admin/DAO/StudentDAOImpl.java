@@ -25,7 +25,11 @@ public class StudentDAOImpl implements IStudentDAO {
 			ps = con.prepareStatement(IStudentSQL.READ_ALL_STUDENT);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				studentList.add(new StudentDTO());
+				studentList.add(new StudentDTO(rs.getInt("student_id"), rs.getString("student_name"), rs.getInt("age"), 
+						rs.getString("looking_for"), rs.getString("country"), rs.getString("planned_year_of_higher_study"),
+						rs.getString("work_ex"), rs.getString("toefl/ielts"), rs.getString("gpa"), rs.getString("exam_scores"),
+						rs.getString("verbal_scores"), rs.getString("other_details")));
+				
 			}
 			return studentList;
 		}
@@ -49,17 +53,16 @@ public class StudentDAOImpl implements IStudentDAO {
 			ps = con.prepareStatement(IStudentSQL.ADD_STUDENT);
 			ps.setInt(1, studentDTO.getStudentId());
 			ps.setString(2, studentDTO.getStudentName());
-			ps.setString(3, studentDTO.getEmail());
-			ps.setInt(4, studentDTO.getAge());
-			ps.setString(5, studentDTO.getLookingFor());
-			ps.setString(6, studentDTO.getCountry());
-			ps.setString(7, studentDTO.getPlannedYearOfHigherStudies());
-			ps.setString(8, studentDTO.getWorkEx());
-			ps.setString(9, studentDTO.getToeflIelts());
-			ps.setString(10, studentDTO.getGpa());
-			ps.setString(11, studentDTO.getExamScores());
-			ps.setString(12, studentDTO.getVerbalScores());
-			ps.setString(13, studentDTO.getOtherDetails());
+			ps.setInt(3, studentDTO.getAge());
+			ps.setString(4, studentDTO.getLookingFor());
+			ps.setString(5, studentDTO.getCountry());
+			ps.setString(6, studentDTO.getPlannedYearOfHigherStudies());
+			ps.setString(7, studentDTO.getWorkEx());
+			ps.setString(8, studentDTO.getToeflIelts());
+			ps.setString(9, studentDTO.getGpa());
+			ps.setString(10, studentDTO.getExamScores());
+			ps.setString(11, studentDTO.getVerbalScores());
+			ps.setString(12, studentDTO.getOtherDetails());
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}
@@ -85,7 +88,10 @@ public class StudentDAOImpl implements IStudentDAO {
 			ps.setInt(1, studentDTO.getStudentId());
 			rs = ps.executeQuery();
 			rs.next();
-			studentDTO = new StudentDTO();
+			studentDTO = new StudentDTO(rs.getInt("student_id"), rs.getString("student_name"), rs.getInt("age"), 
+					rs.getString("looking_for"), rs.getString("country"), rs.getString("planned_year_of_higher_study"),
+					rs.getString("work_ex"), rs.getString("toefl/ielts"), rs.getString("gpa"), rs.getString("exam_scores"),
+					rs.getString("verbal_scores"), rs.getString("other_details"));
 			return studentDTO;
 		}
 		finally {
@@ -108,18 +114,17 @@ public class StudentDAOImpl implements IStudentDAO {
 			ps = con.prepareStatement(IStudentSQL.UPDATE_STUDENT);
 			ps.setInt(1, studentDTO.getStudentId());
 			ps.setString(2, studentDTO.getStudentName());
-			ps.setString(3, studentDTO.getEmail());
-			ps.setInt(4, studentDTO.getAge());
-			ps.setString(5, studentDTO.getLookingFor());
-			ps.setString(6, studentDTO.getCountry());
-			ps.setString(7, studentDTO.getPlannedYearOfHigherStudies());
-			ps.setString(8, studentDTO.getWorkEx());
-			ps.setString(9, studentDTO.getToeflIelts());
-			ps.setString(10, studentDTO.getGpa());
-			ps.setString(11, studentDTO.getExamScores());
-			ps.setString(12, studentDTO.getVerbalScores());
-			ps.setString(13, studentDTO.getOtherDetails());
-			ps.setInt(14, studentDTO.getStudentId());
+			ps.setInt(3, studentDTO.getAge());
+			ps.setString(4, studentDTO.getLookingFor());
+			ps.setString(5, studentDTO.getCountry());
+			ps.setString(6, studentDTO.getPlannedYearOfHigherStudies());
+			ps.setString(7, studentDTO.getWorkEx());
+			ps.setString(8, studentDTO.getToeflIelts());
+			ps.setString(9, studentDTO.getGpa());
+			ps.setString(10, studentDTO.getExamScores());
+			ps.setString(11, studentDTO.getVerbalScores());
+			ps.setString(12, studentDTO.getOtherDetails());
+			ps.setInt(13, studentDTO.getStudentId());
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}

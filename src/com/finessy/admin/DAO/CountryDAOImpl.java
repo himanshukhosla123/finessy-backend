@@ -25,7 +25,14 @@ public class CountryDAOImpl implements ICountryDAO{
 			ps = con.prepareStatement(ICountrySQL.READ_ALL_COUNTRY);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				countryList.add(new CountryDTO());
+				countryList.add(new CountryDTO(rs.getInt("country_id"), rs.getString("country_name"), rs.getInt("no_of_students"),
+						rs.getInt("international_students_percent"), rs.getString("status"), rs.getString("happiness_index"),
+						rs.getString("languages_spoken"), rs.getString("political_stability"), rs.getString("climate"),
+						rs.getString("safety_index"), rs.getString("disaster_prone"), rs.getString("student_satisfaction_index"),
+						rs.getString("ease_of_settlement"), rs.getString("ease_of_business"), rs.getInt("expense_for_international_students"),
+						rs.getString("best_thing"), rs.getString("smoking_drinking_laws"), rs.getString("currency_strength"),
+						rs.getString("student_friendly_cities"), rs.getString("cuisines_available"), rs.getString("peculiar_laws"),
+						rs.getString("unknown_facts")));
 			}
 			return countryList;
 		}
@@ -94,7 +101,14 @@ public class CountryDAOImpl implements ICountryDAO{
 			ps.setInt(1, countryDTO.getCountryId());
 			rs = ps.executeQuery();
 			rs.next();
-			countryDTO = new CountryDTO();
+			countryDTO = new CountryDTO(rs.getInt("country_id"), rs.getString("country_name"), rs.getInt("no_of_students"),
+					rs.getInt("international_students_percent"), rs.getString("status"), rs.getString("happiness_index"),
+					rs.getString("languages_spoken"), rs.getString("political_stability"), rs.getString("climate"),
+					rs.getString("safety_index"), rs.getString("disaster_prone"), rs.getString("student_satisfaction_index"),
+					rs.getString("ease_of_settlement"), rs.getString("ease_of_business"), rs.getInt("expense_for_international_students"),
+					rs.getString("best_thing"), rs.getString("smoking_drinking_laws"), rs.getString("currency_strength"),
+					rs.getString("student_friendly_cities"), rs.getString("cuisines_available"), rs.getString("peculiar_laws"),
+					rs.getString("unknown_facts"));
 			return countryDTO;
 		}
 		finally {
