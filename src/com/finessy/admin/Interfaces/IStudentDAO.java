@@ -12,5 +12,5 @@ public interface IStudentDAO {
 	StudentDTO read(StudentDTO studentDTO) throws ClassNotFoundException, SQLException;
 	StudentDTO update(StudentDTO studentDTO) throws ClassNotFoundException, SQLException;
 	StudentDTO delete(StudentDTO studentDTO) throws ClassNotFoundException, SQLException;
-	
+
 }

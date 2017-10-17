@@ -11,6 +11,8 @@ public interface CommonDAO {
 		ResourceBundle rb = ResourceBundle.getBundle("config");
 		Class.forName(rb.getString("drivername"));
 		Connection con = DriverManager.getConnection(rb.getString("dburl"),rb.getString("userid"),rb.getString("password"));
+		System.out.println("Connection established");
+		System.out.println(con.getCatalog());
 		return con;
 	}
 	
