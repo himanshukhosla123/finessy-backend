@@ -25,7 +25,7 @@ public class CountryDetailsCtrl extends HttpServlet {
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<CountryDetailsDTO> countryList=null;
+		ArrayList<CountryDetailsDTO> countryList = null;
 		try {
 			countryList = countryDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {

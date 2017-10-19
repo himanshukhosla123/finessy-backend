@@ -25,7 +25,7 @@ public class StudentDetailsCtrl extends HttpServlet {
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<StudentDetailsDTO> studentList=null;
+		ArrayList<StudentDetailsDTO> studentList = null;
 		try {
 			studentList = studentDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {

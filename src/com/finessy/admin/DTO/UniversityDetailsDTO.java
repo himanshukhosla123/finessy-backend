@@ -25,6 +25,31 @@ public class UniversityDetailsDTO {
 	
 	public UniversityDetailsDTO() {}
 
+	public UniversityDetailsDTO(String universityName, String campusSize, Date founded, String type, String mapLocation,
+			String symbol, String endowment, String graduateEmploybilityRanking, int totalStudents,
+			int totalUndergraduateStudents, int totalGraduateStudents, String ranking,
+			String percentageOfInternationalStudents, String studentGroups, String safetyIssues, String acceptanceRate,
+			String contactDetails) {
+		super();
+		this.universityName = universityName;
+		this.campusSize = campusSize;
+		this.founded = founded;
+		this.type = type;
+		this.mapLocation = mapLocation;
+		this.symbol = symbol;
+		this.endowment = endowment;
+		this.graduateEmploybilityRanking = graduateEmploybilityRanking;
+		this.totalStudents = totalStudents;
+		this.totalUndergraduateStudents = totalUndergraduateStudents;
+		this.totalGraduateStudents = totalGraduateStudents;
+		this.ranking = ranking;
+		this.percentageOfInternationalStudents = percentageOfInternationalStudents;
+		this.studentGroups = studentGroups;
+		this.safetyIssues = safetyIssues;
+		this.acceptanceRate = acceptanceRate;
+		this.contactDetails = contactDetails;
+	}
+
 	public UniversityDetailsDTO(int universityId, String universityName, String campusSize, Date founded, String type,
 			String mapLocation, String symbol, String endowment, String graduateEmploybilityRanking, int totalStudents,
 			int totalUndergraduateStudents, int totalGraduateStudents, String ranking,

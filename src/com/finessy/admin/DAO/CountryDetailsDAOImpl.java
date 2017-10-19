@@ -10,6 +10,7 @@ import com.finessy.admin.CommonDAO;
 import com.finessy.admin.DTO.CountryDetailsDTO;
 import com.finessy.admin.Interfaces.ICountryDetailsDAO;
 import com.finessy.admin.QueriesSQL.CountryDetailsSQL;
+import com.mysql.jdbc.Statement;
 
 public class CountryDetailsDAOImpl implements ICountryDetailsDAO{
 	
@@ -53,35 +54,37 @@ public class CountryDetailsDAOImpl implements ICountryDetailsDAO{
 	public CountryDetailsDTO add(CountryDetailsDTO countryDTO) throws ClassNotFoundException, SQLException {
 		try {
 			con = CommonDAO.getConnection();
-			ps = con.prepareStatement(CountryDetailsSQL.ADD_COUNTRY);
-			ps.setInt(1, countryDTO.getCountryId());
-			ps.setString(2, countryDTO.getCountryName());
-			ps.setInt(3, countryDTO.getNoOfStudents());
-			ps.setInt(4, countryDTO.getInternationalStudentsPercent());
-			ps.setString(5, countryDTO.getStatus());
-			ps.setString(6, countryDTO.getHappinessIndex());
-			ps.setString(7, countryDTO.getLanguagesSpoken());
-			ps.setString(8, countryDTO.getPoliticalStability());
-			ps.setString(9, countryDTO.getClimate());
-			ps.setString(10, countryDTO.getSafetyIndex());
-			ps.setString(11, countryDTO.getDisasterProne());
-			ps.setString(12, countryDTO.getStudentSatisfactionIndex());
-			ps.setString(13, countryDTO.getEaseOfSettlement());
-			ps.setString(14, countryDTO.getEaseOfBusiness());
-			ps.setInt(15, countryDTO.getExpenseForInternationalStudents());
-			ps.setString(16, countryDTO.getBestThing());
-			ps.setString(17, countryDTO.getSmokingDrinkingLaws());
-			ps.setString(18, countryDTO.getCurrencyStrength());
-			ps.setString(19, countryDTO.getStudentFriendlyCities());
-			ps.setString(20, countryDTO.getCuisinesAvailable());
-			ps.setString(21, countryDTO.getPeculiarLaws());
-			ps.setString(22, countryDTO.getUnknownFacts());
+			ps = con.prepareStatement(CountryDetailsSQL.ADD_COUNTRY, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, countryDTO.getCountryName());
+			ps.setInt(2, countryDTO.getNoOfStudents());
+			ps.setInt(3, countryDTO.getInternationalStudentsPercent());
+			ps.setString(4, countryDTO.getStatus());
+			ps.setString(5, countryDTO.getHappinessIndex());
+			ps.setString(6, countryDTO.getLanguagesSpoken());
+			ps.setString(7, countryDTO.getPoliticalStability());
+			ps.setString(8, countryDTO.getClimate());
+			ps.setString(9, countryDTO.getSafetyIndex());
+			ps.setString(10, countryDTO.getDisasterProne());
+			ps.setString(11, countryDTO.getStudentSatisfactionIndex());
+			ps.setString(12, countryDTO.getEaseOfSettlement());
+			ps.setString(13, countryDTO.getEaseOfBusiness());
+			ps.setInt(14, countryDTO.getExpenseForInternationalStudents());
+			ps.setString(15, countryDTO.getBestThing());
+			ps.setString(16, countryDTO.getSmokingDrinkingLaws());
+			ps.setString(17, countryDTO.getCurrencyStrength());
+			ps.setString(18, countryDTO.getStudentFriendlyCities());
+			ps.setString(19, countryDTO.getCuisinesAvailable());
+			ps.setString(20, countryDTO.getPeculiarLaws());
+			ps.setString(21, countryDTO.getUnknownFacts());
 			if(ps.executeUpdate() > 0) {
+				rs = ps.getGeneratedKeys();
+				if(rs.next() && rs != null){
+					   countryDTO.setCountryId(rs.getInt(1));
+					   System.out.println(countryDTO.toString());
+					} 
 				return countryDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {
@@ -129,35 +132,32 @@ public class CountryDetailsDAOImpl implements ICountryDetailsDAO{
 		try {
 			con = CommonDAO.getConnection();
 			ps = con.prepareStatement(CountryDetailsSQL.UPDATE_COUNTRY);
-			ps.setInt(1, countryDTO.getCountryId());
-			ps.setString(2, countryDTO.getCountryName());
-			ps.setInt(3, countryDTO.getNoOfStudents());
-			ps.setInt(4, countryDTO.getInternationalStudentsPercent());
-			ps.setString(5, countryDTO.getStatus());
-			ps.setString(6, countryDTO.getHappinessIndex());
-			ps.setString(7, countryDTO.getLanguagesSpoken());
-			ps.setString(8, countryDTO.getPoliticalStability());
-			ps.setString(9, countryDTO.getClimate());
-			ps.setString(10, countryDTO.getSafetyIndex());
-			ps.setString(11, countryDTO.getDisasterProne());
-			ps.setString(12, countryDTO.getStudentSatisfactionIndex());
-			ps.setString(13, countryDTO.getEaseOfSettlement());
-			ps.setString(14, countryDTO.getEaseOfBusiness());
-			ps.setInt(15, countryDTO.getExpenseForInternationalStudents());
-			ps.setString(16, countryDTO.getBestThing());
-			ps.setString(17, countryDTO.getSmokingDrinkingLaws());
-			ps.setString(18, countryDTO.getCurrencyStrength());
-			ps.setString(19, countryDTO.getStudentFriendlyCities());
-			ps.setString(20, countryDTO.getCuisinesAvailable());
-			ps.setString(21, countryDTO.getPeculiarLaws());
-			ps.setString(22, countryDTO.getUnknownFacts());
-			ps.setInt(23, countryDTO.getCountryId());
+			ps.setString(1, countryDTO.getCountryName());
+			ps.setInt(2, countryDTO.getNoOfStudents());
+			ps.setInt(3, countryDTO.getInternationalStudentsPercent());
+			ps.setString(4, countryDTO.getStatus());
+			ps.setString(5, countryDTO.getHappinessIndex());
+			ps.setString(6, countryDTO.getLanguagesSpoken());
+			ps.setString(7, countryDTO.getPoliticalStability());
+			ps.setString(8, countryDTO.getClimate());
+			ps.setString(9, countryDTO.getSafetyIndex());
+			ps.setString(10, countryDTO.getDisasterProne());
+			ps.setString(11, countryDTO.getStudentSatisfactionIndex());
+			ps.setString(12, countryDTO.getEaseOfSettlement());
+			ps.setString(13, countryDTO.getEaseOfBusiness());
+			ps.setInt(14, countryDTO.getExpenseForInternationalStudents());
+			ps.setString(15, countryDTO.getBestThing());
+			ps.setString(16, countryDTO.getSmokingDrinkingLaws());
+			ps.setString(17, countryDTO.getCurrencyStrength());
+			ps.setString(18, countryDTO.getStudentFriendlyCities());
+			ps.setString(19, countryDTO.getCuisinesAvailable());
+			ps.setString(20, countryDTO.getPeculiarLaws());
+			ps.setString(21, countryDTO.getUnknownFacts());
+			ps.setInt(22, countryDTO.getCountryId());
 			if(ps.executeUpdate() > 0) {
 				return countryDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {
@@ -178,9 +178,7 @@ public class CountryDetailsDAOImpl implements ICountryDetailsDAO{
 			if(ps.executeUpdate() > 0) {
 				return countryDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {

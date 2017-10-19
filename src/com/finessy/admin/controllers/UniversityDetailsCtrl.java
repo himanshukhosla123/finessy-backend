@@ -21,11 +21,11 @@ public class UniversityDetailsCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		UniversityDetailsDAOImpl universityDAO=new UniversityDetailsDAOImpl();
+		UniversityDetailsDAOImpl universityDAO = new UniversityDetailsDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<UniversityDetailsDTO> universityList=null;
+		ArrayList<UniversityDetailsDTO> universityList = null;
 		try {
 			universityList = universityDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {

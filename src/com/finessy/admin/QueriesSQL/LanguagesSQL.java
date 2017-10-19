@@ -8,7 +8,8 @@ public interface LanguagesSQL {
 	
 	String READ_LANGUAGE = "SELECT * FROM languages WHERE country_id=?;";
 	
-	String UPDATE_LANGUAGE = "UPDATE languages SET country_id=? languages_spoken=? WHERE university_id=?;";
+//	MAY NOT BE NECESSARY - FIRST DELETE THEN ADD
+	String UPDATE_LANGUAGE = "UPDATE languages SET languages_spoken=? WHERE university_id=?;";
 	
 	String DELETE_LANGUAGE = "DELETE FROM languages WHERE country_id=?;";
 

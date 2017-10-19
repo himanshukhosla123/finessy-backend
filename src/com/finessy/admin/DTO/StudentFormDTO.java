@@ -8,6 +8,12 @@ public class StudentFormDTO {
 	
 	public StudentFormDTO() {}
 
+	public StudentFormDTO(String password, String email) {
+		super();
+		this.password = password;
+		this.email = email;
+	}
+
 	public StudentFormDTO(int student_id, String password, String email) {
 		super();
 		this.student_id = student_id;

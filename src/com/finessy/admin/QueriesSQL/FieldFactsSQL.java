@@ -10,7 +10,7 @@ public interface FieldFactsSQL {
 	
 	String READ_FIELD_FACTS = "SELECT * FROM field_facts WHERE field_id=?;";
 	
-	String UPDATE_FIELD_FACTS = "UPDATE field_facts SET field_id=? best_market=? salary_after=? scope_in_each_country=? types_of_jobs=?"
+	String UPDATE_FIELD_FACTS = "UPDATE field_facts SET best_market=? salary_after=? scope_in_each_country=? types_of_jobs=?"
 			+ " their_salaries=? number_of_students=? number_of_students_interested=? current_trends=? value_of_degree_to_work=?"
 			+ " to_get_hired=? WHERE field_id=?;";
 	

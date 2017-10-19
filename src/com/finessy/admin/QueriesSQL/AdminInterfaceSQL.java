@@ -8,7 +8,7 @@ public interface AdminInterfaceSQL {
 	
 	String READ_USER = "SELECT * FROM admin_interface WHERE username=?;";
 	
-	String UPDATE_USER = "UPDATE admin_interface SET username=? password=? photo=? role=? WHERE username=?;";
+	String UPDATE_USER = "UPDATE admin_interface SET password=? photo=? role=? WHERE username=?;";
 	
 	String DELETE_USER = "DELETE FROM admin_interface WHERE username=?;";
 

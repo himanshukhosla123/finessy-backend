@@ -8,7 +8,7 @@ public interface AlumniSQL {
 	
 	String READ_ALUMNI = "SELECT * FROM alumni WHERE university_id=?;";
 	
-	String UPDATE_ALUMNI = "UPDATE alumni SET university_id=? famous_alumni=? image=? WHERE university_id=?;";
+	String UPDATE_ALUMNI = "UPDATE alumni SET famous_alumni=? image=? WHERE university_id=?;";
 	
 	String DELETE_ALUMNI = "DELETE FROM alumni WHERE university_id=?;";
 
