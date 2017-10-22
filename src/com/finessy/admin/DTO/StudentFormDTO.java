@@ -2,7 +2,7 @@ package com.finessy.admin.DTO;
 
 public class StudentFormDTO {
 	
-	private int student_id;
+	private int studentId;
 	private String password;
 	private String email;
 	
@@ -14,19 +14,19 @@ public class StudentFormDTO {
 		this.email = email;
 	}
 
-	public StudentFormDTO(int student_id, String password, String email) {
+	public StudentFormDTO(int studentId, String password, String email) {
 		super();
-		this.student_id = student_id;
+		this.studentId = studentId;
 		this.password = password;
 		this.email = email;
 	}
 
-	public int getStudent_id() {
-		return student_id;
+	public int getStudentId() {
+		return studentId;
 	}
 
-	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 	public String getPassword() {
@@ -47,7 +47,7 @@ public class StudentFormDTO {
 
 	@Override
 	public String toString() {
-		return "StudentFormDTO [student_id=" + student_id + ", password=" + password + ", email=" + email + "]";
+		return "StudentFormDTO [studentId=" + studentId + ", password=" + password + ", email=" + email + "]";
 	}
 
 }

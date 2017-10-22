@@ -79,9 +79,9 @@ public class CountryDetailsDAOImpl implements ICountryDetailsDAO{
 			if(ps.executeUpdate() > 0) {
 				rs = ps.getGeneratedKeys();
 				if(rs.next() && rs != null){
-					   countryDTO.setCountryId(rs.getInt(1));
-					   System.out.println(countryDTO.toString());
-					} 
+				   countryDTO.setCountryId(rs.getInt(1));
+				   System.out.println(countryDTO.toString());
+				} 
 				return countryDTO;
 			}
 			return null;

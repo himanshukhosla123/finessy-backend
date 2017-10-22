@@ -25,7 +25,7 @@ public class UniversityDetailsDAOImpl implements IUniversityDetailsDAO{
 			ps = con.prepareStatement(UniversityDetailsSQL.READ_ALL_UNIVERSITY);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				universityList.add(new UniversityDetailsDTO(rs.getInt("university_id"), rs.getString("university_name"), rs.getString("campus_size"),
+				universityList.add(new UniversityDetailsDTO(rs.getString("university_name"), rs.getString("campus_size"),
 						rs.getDate("founded"), rs.getString("type"), rs.getString("map_location"), rs.getString("symbol"), rs.getString("endowment"),
 						rs.getString("graduate_employbility_ranking"), rs.getInt("total_students"), rs.getInt("total_undergraduate_students"),
 						rs.getInt("total_graduate_students"), rs.getString("ranking"), rs.getString("percentage_of_international_students"),
@@ -51,30 +51,32 @@ public class UniversityDetailsDAOImpl implements IUniversityDetailsDAO{
 		try {
 			con = CommonDAO.getConnection();
 			ps = con.prepareStatement(UniversityDetailsSQL.ADD_UNIVERSITY);
-			ps.setInt(1, universityDTO.getUniversityId());
-			ps.setString(2, universityDTO.getUniversityName());
-			ps.setString(3, universityDTO.getCampusSize());
-			ps.setDate(4, universityDTO.getFounded());
-			ps.setString(5, universityDTO.getType());
-			ps.setString(6, universityDTO.getMapLocation());
-			ps.setString(7, universityDTO.getSymbol());
-			ps.setString(8, universityDTO.getEndowment());
-			ps.setString(9, universityDTO.getGraduateEmploybilityRanking());
-			ps.setInt(10, universityDTO.getTotalStudents());
-			ps.setInt(11, universityDTO.getTotalUndergraduateStudents());
-			ps.setInt(12, universityDTO.getTotalGraduateStudents());
-			ps.setString(13, universityDTO.getRanking());
-			ps.setString(14, universityDTO.getPercentageOfInternationalStudents());
-			ps.setString(15, universityDTO.getStudentGroups());
-			ps.setString(16, universityDTO.getSafetyIssues());
-			ps.setString(17, universityDTO.getAcceptanceRate());
-			ps.setString(18, universityDTO.getContactDetails());
+			ps.setString(1, universityDTO.getUniversityName());
+			ps.setString(2, universityDTO.getCampusSize());
+			ps.setDate(3, universityDTO.getFounded());
+			ps.setString(4, universityDTO.getType());
+			ps.setString(5, universityDTO.getMapLocation());
+			ps.setString(6, universityDTO.getSymbol());
+			ps.setString(7, universityDTO.getEndowment());
+			ps.setString(8, universityDTO.getGraduateEmploybilityRanking());
+			ps.setInt(9, universityDTO.getTotalStudents());
+			ps.setInt(10, universityDTO.getTotalUndergraduateStudents());
+			ps.setInt(11, universityDTO.getTotalGraduateStudents());
+			ps.setString(12, universityDTO.getRanking());
+			ps.setString(13, universityDTO.getPercentageOfInternationalStudents());
+			ps.setString(14, universityDTO.getStudentGroups());
+			ps.setString(15, universityDTO.getSafetyIssues());
+			ps.setString(16, universityDTO.getAcceptanceRate());
+			ps.setString(17, universityDTO.getContactDetails());
 			if(ps.executeUpdate() > 0) {
+				rs = ps.getGeneratedKeys();
+				if(rs.next() && rs != null){
+					universityDTO.setUniversityId(rs.getInt(1));
+					   System.out.println(universityDTO.toString());
+					} 
 				return universityDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {
@@ -119,31 +121,28 @@ public class UniversityDetailsDAOImpl implements IUniversityDetailsDAO{
 		try {
 			con = CommonDAO.getConnection();
 			ps = con.prepareStatement(UniversityDetailsSQL.UPDATE_UNIVERSITY);
-			ps.setInt(1, universityDTO.getUniversityId());
-			ps.setString(2, universityDTO.getUniversityName());
-			ps.setString(3, universityDTO.getCampusSize());
-			ps.setDate(4, universityDTO.getFounded());
-			ps.setString(5, universityDTO.getType());
-			ps.setString(6, universityDTO.getMapLocation());
-			ps.setString(7, universityDTO.getSymbol());
-			ps.setString(8, universityDTO.getEndowment());
-			ps.setString(9, universityDTO.getGraduateEmploybilityRanking());
-			ps.setInt(10, universityDTO.getTotalStudents());
-			ps.setInt(11, universityDTO.getTotalUndergraduateStudents());
-			ps.setInt(12, universityDTO.getTotalGraduateStudents());
-			ps.setString(13, universityDTO.getRanking());
-			ps.setString(14, universityDTO.getPercentageOfInternationalStudents());
-			ps.setString(15, universityDTO.getStudentGroups());
-			ps.setString(16, universityDTO.getSafetyIssues());
-			ps.setString(17, universityDTO.getAcceptanceRate());
-			ps.setString(18, universityDTO.getContactDetails());
-			ps.setInt(19, universityDTO.getUniversityId());
+			ps.setString(1, universityDTO.getUniversityName());
+			ps.setString(2, universityDTO.getCampusSize());
+			ps.setDate(3, universityDTO.getFounded());
+			ps.setString(4, universityDTO.getType());
+			ps.setString(5, universityDTO.getMapLocation());
+			ps.setString(6, universityDTO.getSymbol());
+			ps.setString(7, universityDTO.getEndowment());
+			ps.setString(8, universityDTO.getGraduateEmploybilityRanking());
+			ps.setInt(9, universityDTO.getTotalStudents());
+			ps.setInt(10, universityDTO.getTotalUndergraduateStudents());
+			ps.setInt(11, universityDTO.getTotalGraduateStudents());
+			ps.setString(12, universityDTO.getRanking());
+			ps.setString(13, universityDTO.getPercentageOfInternationalStudents());
+			ps.setString(14, universityDTO.getStudentGroups());
+			ps.setString(15, universityDTO.getSafetyIssues());
+			ps.setString(16, universityDTO.getAcceptanceRate());
+			ps.setString(17, universityDTO.getContactDetails());
+			ps.setInt(18, universityDTO.getUniversityId());
 			if(ps.executeUpdate() > 0) {
 				return universityDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {
@@ -164,9 +163,7 @@ public class UniversityDetailsDAOImpl implements IUniversityDetailsDAO{
 			if(ps.executeUpdate() > 0) {
 				return universityDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {

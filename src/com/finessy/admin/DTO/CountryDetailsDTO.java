@@ -27,36 +27,6 @@ public class CountryDetailsDTO {
 	
 	public CountryDetailsDTO() {}
 
-	public CountryDetailsDTO(String countryName, int noOfStudents, int internationalStudentsPercent,
-			String status, String happinessIndex, String languagesSpoken, String politicalStability, String climate,
-			String safetyIndex, String disasterProne, String studentSatisfactionIndex, String easeOfSettlement,
-			String easeOfBusiness, int expenseForInternationalStudents, String bestThing, String smokingDrinkingLaws,
-			String currencyStrength, String studentFriendlyCities, String cuisinesAvailable, String peculiarLaws,
-			String unknownFacts) {
-		super();
-		this.countryName = countryName;
-		this.noOfStudents = noOfStudents;
-		this.internationalStudentsPercent = internationalStudentsPercent;
-		this.status = status;
-		this.happinessIndex = happinessIndex;
-		this.languagesSpoken = languagesSpoken;
-		this.politicalStability = politicalStability;
-		this.climate = climate;
-		this.safetyIndex = safetyIndex;
-		this.disasterProne = disasterProne;
-		this.studentSatisfactionIndex = studentSatisfactionIndex;
-		this.easeOfSettlement = easeOfSettlement;
-		this.easeOfBusiness = easeOfBusiness;
-		this.expenseForInternationalStudents = expenseForInternationalStudents;
-		this.bestThing = bestThing;
-		this.smokingDrinkingLaws = smokingDrinkingLaws;
-		this.currencyStrength = currencyStrength;
-		this.studentFriendlyCities = studentFriendlyCities;
-		this.cuisinesAvailable = cuisinesAvailable;
-		this.peculiarLaws = peculiarLaws;
-		this.unknownFacts = unknownFacts;
-	}
-
 	public CountryDetailsDTO(int countryId, String countryName, int noOfStudents, int internationalStudentsPercent,
 			String status, String happinessIndex, String languagesSpoken, String politicalStability, String climate,
 			String safetyIndex, String disasterProne, String studentSatisfactionIndex, String easeOfSettlement,

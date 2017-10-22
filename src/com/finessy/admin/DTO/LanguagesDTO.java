@@ -2,23 +2,23 @@ package com.finessy.admin.DTO;
 
 public class LanguagesDTO {
 	
-	private int country_id;
+	private int countryId;
 	private String languagesSpoken;
 	
 	public LanguagesDTO() {}
 
-	public LanguagesDTO(int country_id, String languagesSpoken) {
+	public LanguagesDTO(int countryId, String languagesSpoken) {
 		super();
-		this.country_id = country_id;
+		this.countryId = countryId;
 		this.languagesSpoken = languagesSpoken;
 	}
 
-	public int getCountry_id() {
-		return country_id;
+	public int getCountryId() {
+		return countryId;
 	}
 
-	public void setCountry_id(int country_id) {
-		this.country_id = country_id;
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
 	}
 
 	public String getLanguagesSpoken() {
@@ -31,7 +31,7 @@ public class LanguagesDTO {
 
 	@Override
 	public String toString() {
-		return "LanguagesDTO [country_id=" + country_id + ", languagesSpoken=" + languagesSpoken + "]";
+		return "LanguagesDTO [countryId=" + countryId + ", languagesSpoken=" + languagesSpoken + "]";
 	}
 
 }

@@ -2,8 +2,8 @@ package com.finessy.admin.QueriesSQL;
 
 public interface ProgramDetailsSQL {
 	
-	String ADD_PROGRAM = "INSERT INTO program_details(`university_id`, `degree`, `field_id`, `intake_available`, `program_application_deadline`,"
-			+ " `requirements`) VALUES(?,?,?,?,?,?);";
+	String ADD_PROGRAM = "INSERT INTO program_details(`university_id`, `degree`, `field_id`, `intake_available`,"
+			+ "`program_application_deadline`, `requirements`) VALUES(?,?,?,?,?,?);";
 	
 	String READ_ALL_PROGRAM = "SELECT * FROM program_details;";
 	

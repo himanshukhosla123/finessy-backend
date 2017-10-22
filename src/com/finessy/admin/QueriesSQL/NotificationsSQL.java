@@ -1,6 +1,6 @@
 package com.finessy.admin.QueriesSQL;
 
-public class NotificationsSQL {
+public interface NotificationsSQL {
 	
 	String ADD_NOTIFICATION = "INSERT INTO notifications(`student_id`, `university_id`, `course_code`) VALUES(?,?,?);";
 	
@@ -8,6 +8,7 @@ public class NotificationsSQL {
 	
 	String READ_NOTIFICATION = "SELECT * FROM notifications WHERE student_id=? OR university_id=?;";
 	
+//	HOW UPDATE WILL TAKE PLACE
 	String UPDATE_NOTIFICATION = "UPDATE notifications SET university_id=? course_code=? WHERE student_id=? OR university_id=?;";
 	
 	String DELETE_NOTIFICATION = "DELETE FROM notifications WHERE student_id=? OR university_id=?;";

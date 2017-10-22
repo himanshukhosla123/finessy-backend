@@ -66,9 +66,7 @@ public class StudentDetailsDAOImpl implements IStudentDetailsDAO {
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {
@@ -128,9 +126,7 @@ public class StudentDetailsDAOImpl implements IStudentDetailsDAO {
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {
@@ -151,9 +147,7 @@ public class StudentDetailsDAOImpl implements IStudentDetailsDAO {
 			if(ps.executeUpdate() > 0) {
 				return studentDTO;
 			}
-			else {
-				return null;
-			}
+			return null;
 		}
 		finally {
 			if(ps != null) {

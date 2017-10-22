@@ -9,13 +9,6 @@ public class SubfieldDetailsDTO {
 	
 	public SubfieldDetailsDTO() {}
 
-	public SubfieldDetailsDTO(String discipline, String program, String jobs) {
-		super();
-		this.discipline = discipline;
-		this.program = program;
-		this.jobs = jobs;
-	}
-
 	public SubfieldDetailsDTO(int fieldId, String discipline, String program, String jobs) {
 		super();
 		this.fieldId = fieldId;
