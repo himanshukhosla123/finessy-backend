@@ -33,7 +33,7 @@ public class CountryDetailsCtrl extends HttpServlet {
 		}
 		json = mapper.writeValueAsString(countryList);
 		response.addHeader("Access-Control-Allow-Origin", "*");
-	    response.addHeader("Access-Control-Allow-Methods","GET");
+	    response.addHeader("Access-Control-Allow-Methods", "GET");
 	    response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
 		response.getWriter().println(json);
 
@@ -48,34 +48,36 @@ public class CountryDetailsCtrl extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
 		CountryDetailsDTO countryDTO;
+		System.out.println("inside server");
 		
 		try{
 			switch(methodName){
 				case "readAll":
 					ArrayList<CountryDetailsDTO> countryList = countryDAO.readAll();
 					json = mapper.writeValueAsString(countryList);
+					System.out.println(json);
 					response.getWriter().println(json);
 					break;
 				case "add":
-					countryDTO = mapper.readValue(dtoObj,new TypeReference<CountryDetailsDTO>(){});
+					countryDTO = mapper.readValue(dtoObj, new TypeReference<CountryDetailsDTO>(){});
 					countryDTO = countryDAO.add(countryDTO);
 					json = mapper.writeValueAsString(countryDTO);
 					response.getWriter().println(json);
 					break;
 				case "read":
-					countryDTO = mapper.readValue(dtoObj,new TypeReference<CountryDetailsDTO>(){});
+					countryDTO = mapper.readValue(dtoObj, new TypeReference<CountryDetailsDTO>(){});
 					countryDTO = countryDAO.read(countryDTO);
 					json = mapper.writeValueAsString(countryDTO);
 					response.getWriter().println(json);
 					break;
 				case "update":
-					countryDTO = mapper.readValue(dtoObj,new TypeReference<CountryDetailsDTO>(){});
+					countryDTO = mapper.readValue(dtoObj, new TypeReference<CountryDetailsDTO>(){});
 					countryDTO = countryDAO.update(countryDTO);
 					json = mapper.writeValueAsString(countryDTO);
 					response.getWriter().println(json);
 					break;
 				case "delete":
-					countryDTO = mapper.readValue(dtoObj,new TypeReference<CountryDetailsDTO>(){});
+					countryDTO = mapper.readValue(dtoObj, new TypeReference<CountryDetailsDTO>(){});
 					countryDTO = countryDAO.delete(countryDTO);
 					json = mapper.writeValueAsString(countryDTO);
 					response.getWriter().println(json);

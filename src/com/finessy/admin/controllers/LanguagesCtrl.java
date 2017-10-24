@@ -13,25 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.finessy.admin.DAO.StudentDetailsDAOImpl;
-import com.finessy.admin.DTO.StudentDetailsDTO;
+import com.finessy.admin.DAO.LanguagesDAOImpl;
+import com.finessy.admin.DTO.LanguagesDTO;
 
-@WebServlet(urlPatterns="/studentCtrl")
-public class StudentDetailsCtrl extends HttpServlet {
+@WebServlet(urlPatterns="/language")
+public class LanguagesCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+
+		LanguagesDAOImpl languageDAO = new LanguagesDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<StudentDetailsDTO> studentList = null;
+		ArrayList<LanguagesDTO> languageList = null;
 		try {
-			studentList = studentDAO.readAll();
+			languageList = languageDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		json = mapper.writeValueAsString(studentList);
+		json = mapper.writeValueAsString(languageList);
 		response.addHeader("Access-Control-Allow-Origin", "*");
 	    response.addHeader("Access-Control-Allow-Methods", "GET");
 	    response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
@@ -39,52 +39,55 @@ public class StudentDetailsCtrl extends HttpServlet {
 
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String methodName = (String)request.getParameter("method");
 		String dtoObj = request.getParameter("dto_obj");
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+		LanguagesDAOImpl languageDAO = new LanguagesDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		StudentDetailsDTO studentDTO;
+		LanguagesDTO languageDTO;
 		
 		try{
 			switch(methodName){
 				case "readAll":
-					ArrayList<StudentDetailsDTO> studentList = studentDAO.readAll();
-					json = mapper.writeValueAsString(studentList);
+					ArrayList<LanguagesDTO> languageList = languageDAO.readAll();
+					json = mapper.writeValueAsString(languageList);
 					response.getWriter().println(json);
 					break;
 				case "add":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.add(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					languageDTO = mapper.readValue(dtoObj, new TypeReference<LanguagesDTO>(){});
+					languageDTO = languageDAO.add(languageDTO);
+					json = mapper.writeValueAsString(languageDTO);
 					response.getWriter().println(json);
 					break;
 				case "read":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.read(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					languageDTO = mapper.readValue(dtoObj, new TypeReference<LanguagesDTO>(){});
+					languageDTO = languageDAO.read(languageDTO);
+					json = mapper.writeValueAsString(languageDTO);
 					response.getWriter().println(json);
 					break;
 				case "update":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.update(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					languageDTO = mapper.readValue(dtoObj, new TypeReference<LanguagesDTO>(){});
+					languageDTO = languageDAO.update(languageDTO);
+					json = mapper.writeValueAsString(languageDTO);
 					response.getWriter().println(json);
 					break;
 				case "delete":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.delete(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					languageDTO = mapper.readValue(dtoObj, new TypeReference<LanguagesDTO>(){});
+					languageDTO = languageDAO.delete(languageDTO);
+					json = mapper.writeValueAsString(languageDTO);
 					response.getWriter().println(json);
 					break;
 			};
 		} catch (ClassNotFoundException | SQLException e){
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

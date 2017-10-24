@@ -13,25 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.finessy.admin.DAO.StudentDetailsDAOImpl;
-import com.finessy.admin.DTO.StudentDetailsDTO;
+import com.finessy.admin.DAO.AdminInterfaceDAOImpl;
+import com.finessy.admin.DTO.AdminInterfaceDTO;
 
-@WebServlet(urlPatterns="/studentCtrl")
-public class StudentDetailsCtrl extends HttpServlet {
+@WebServlet(urlPatterns="/admin")
+public class AdminInterfaceCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+
+		AdminInterfaceDAOImpl adminDAO = new AdminInterfaceDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<StudentDetailsDTO> studentList = null;
+		ArrayList<AdminInterfaceDTO> adminList = null;
 		try {
-			studentList = studentDAO.readAll();
+			adminList = adminDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		json = mapper.writeValueAsString(studentList);
+		json = mapper.writeValueAsString(adminList);
 		response.addHeader("Access-Control-Allow-Origin", "*");
 	    response.addHeader("Access-Control-Allow-Methods", "GET");
 	    response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
@@ -43,48 +43,48 @@ public class StudentDetailsCtrl extends HttpServlet {
 		
 		String methodName = (String)request.getParameter("method");
 		String dtoObj = request.getParameter("dto_obj");
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+		AdminInterfaceDAOImpl adminDAO = new AdminInterfaceDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		StudentDetailsDTO studentDTO;
+		AdminInterfaceDTO adminDTO;
 		
 		try{
 			switch(methodName){
 				case "readAll":
-					ArrayList<StudentDetailsDTO> studentList = studentDAO.readAll();
-					json = mapper.writeValueAsString(studentList);
+					ArrayList<AdminInterfaceDTO> adminList = adminDAO.readAll();
+					json = mapper.writeValueAsString(adminList);
 					response.getWriter().println(json);
 					break;
 				case "add":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.add(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					adminDTO = mapper.readValue(dtoObj, new TypeReference<AdminInterfaceDTO>(){});
+					adminDTO = adminDAO.add(adminDTO);
+					json = mapper.writeValueAsString(adminDTO);
 					response.getWriter().println(json);
 					break;
 				case "read":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.read(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					adminDTO = mapper.readValue(dtoObj, new TypeReference<AdminInterfaceDTO>(){});
+					adminDTO = adminDAO.read(adminDTO);
+					json = mapper.writeValueAsString(adminDTO);
 					response.getWriter().println(json);
 					break;
 				case "update":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.update(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					adminDTO = mapper.readValue(dtoObj, new TypeReference<AdminInterfaceDTO>(){});
+					adminDTO = adminDAO.update(adminDTO);
+					json = mapper.writeValueAsString(adminDTO);
 					response.getWriter().println(json);
 					break;
 				case "delete":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.delete(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					adminDTO = mapper.readValue(dtoObj, new TypeReference<AdminInterfaceDTO>(){});
+					adminDTO = adminDAO.delete(adminDTO);
+					json = mapper.writeValueAsString(adminDTO);
 					response.getWriter().println(json);
 					break;
 			};
 		} catch (ClassNotFoundException | SQLException e){
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

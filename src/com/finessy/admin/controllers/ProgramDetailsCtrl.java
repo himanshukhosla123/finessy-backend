@@ -13,25 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.finessy.admin.DAO.StudentDetailsDAOImpl;
-import com.finessy.admin.DTO.StudentDetailsDTO;
+import com.finessy.admin.DAO.ProgramDetailsDAOImpl;
+import com.finessy.admin.DTO.ProgramDetailsDTO;
 
-@WebServlet(urlPatterns="/studentCtrl")
-public class StudentDetailsCtrl extends HttpServlet {
+@WebServlet(urlPatterns="/program")
+public class ProgramDetailsCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+
+		ProgramDetailsDAOImpl programDAO = new ProgramDetailsDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<StudentDetailsDTO> studentList = null;
+		ArrayList<ProgramDetailsDTO> programList = null;
 		try {
-			studentList = studentDAO.readAll();
+			programList = programDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		json = mapper.writeValueAsString(studentList);
+		json = mapper.writeValueAsString(programList);
 		response.addHeader("Access-Control-Allow-Origin", "*");
 	    response.addHeader("Access-Control-Allow-Methods", "GET");
 	    response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
@@ -40,51 +40,51 @@ public class StudentDetailsCtrl extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String methodName = (String)request.getParameter("method");
 		String dtoObj = request.getParameter("dto_obj");
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+		ProgramDetailsDAOImpl programDAO = new ProgramDetailsDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		StudentDetailsDTO studentDTO;
+		ProgramDetailsDTO programDTO;
 		
 		try{
 			switch(methodName){
 				case "readAll":
-					ArrayList<StudentDetailsDTO> studentList = studentDAO.readAll();
-					json = mapper.writeValueAsString(studentList);
+					ArrayList<ProgramDetailsDTO> programList = programDAO.readAll();
+					json = mapper.writeValueAsString(programList);
 					response.getWriter().println(json);
 					break;
 				case "add":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.add(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					programDTO = mapper.readValue(dtoObj, new TypeReference<ProgramDetailsDTO>(){});
+					programDTO = programDAO.add(programDTO);
+					json = mapper.writeValueAsString(programDTO);
 					response.getWriter().println(json);
 					break;
 				case "read":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.read(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					programDTO = mapper.readValue(dtoObj, new TypeReference<ProgramDetailsDTO>(){});
+					programDTO = programDAO.read(programDTO);
+					json = mapper.writeValueAsString(programDTO);
 					response.getWriter().println(json);
 					break;
 				case "update":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.update(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					programDTO = mapper.readValue(dtoObj, new TypeReference<ProgramDetailsDTO>(){});
+					programDTO = programDAO.update(programDTO);
+					json = mapper.writeValueAsString(programDTO);
 					response.getWriter().println(json);
 					break;
 				case "delete":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.delete(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					programDTO = mapper.readValue(dtoObj, new TypeReference<ProgramDetailsDTO>(){});
+					programDTO = programDAO.delete(programDTO);
+					json = mapper.writeValueAsString(programDTO);
 					response.getWriter().println(json);
 					break;
 			};
 		} catch (ClassNotFoundException | SQLException e){
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

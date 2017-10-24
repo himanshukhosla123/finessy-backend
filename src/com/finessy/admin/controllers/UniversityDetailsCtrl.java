@@ -33,7 +33,7 @@ public class UniversityDetailsCtrl extends HttpServlet {
 		}
 		json = mapper.writeValueAsString(universityList);
 		response.addHeader("Access-Control-Allow-Origin", "*");
-	    response.addHeader("Access-Control-Allow-Methods","GET");
+	    response.addHeader("Access-Control-Allow-Methods", "GET");
 	    response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
 		response.getWriter().println(json);
 

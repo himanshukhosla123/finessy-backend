@@ -13,25 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.finessy.admin.DAO.StudentDetailsDAOImpl;
-import com.finessy.admin.DTO.StudentDetailsDTO;
+import com.finessy.admin.DAO.SubfieldDetailsDAOImpl;
+import com.finessy.admin.DTO.SubfieldDetailsDTO;
 
-@WebServlet(urlPatterns="/studentCtrl")
-public class StudentDetailsCtrl extends HttpServlet {
+@WebServlet(urlPatterns="/subfield")
+public class SubfieldDetailsCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+
+		SubfieldDetailsDAOImpl subfieldsDAO = new SubfieldDetailsDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<StudentDetailsDTO> studentList = null;
+		ArrayList<SubfieldDetailsDTO> subfieldsList = null;
 		try {
-			studentList = studentDAO.readAll();
+			subfieldsList = subfieldsDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		json = mapper.writeValueAsString(studentList);
+		json = mapper.writeValueAsString(subfieldsList);
 		response.addHeader("Access-Control-Allow-Origin", "*");
 	    response.addHeader("Access-Control-Allow-Methods", "GET");
 	    response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
@@ -40,51 +40,51 @@ public class StudentDetailsCtrl extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String methodName = (String)request.getParameter("method");
 		String dtoObj = request.getParameter("dto_obj");
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+		SubfieldDetailsDAOImpl subfieldsDAO = new SubfieldDetailsDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		StudentDetailsDTO studentDTO;
+		SubfieldDetailsDTO subfieldsDTO;
 		
 		try{
 			switch(methodName){
 				case "readAll":
-					ArrayList<StudentDetailsDTO> studentList = studentDAO.readAll();
-					json = mapper.writeValueAsString(studentList);
+					ArrayList<SubfieldDetailsDTO> subfieldsList = subfieldsDAO.readAll();
+					json = mapper.writeValueAsString(subfieldsList);
 					response.getWriter().println(json);
 					break;
 				case "add":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.add(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					subfieldsDTO = mapper.readValue(dtoObj, new TypeReference<SubfieldDetailsDTO>(){});
+					subfieldsDTO = subfieldsDAO.add(subfieldsDTO);
+					json = mapper.writeValueAsString(subfieldsDTO);
 					response.getWriter().println(json);
 					break;
 				case "read":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.read(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					subfieldsDTO = mapper.readValue(dtoObj, new TypeReference<SubfieldDetailsDTO>(){});
+					subfieldsDTO = subfieldsDAO.read(subfieldsDTO);
+					json = mapper.writeValueAsString(subfieldsDTO);
 					response.getWriter().println(json);
 					break;
 				case "update":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.update(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					subfieldsDTO = mapper.readValue(dtoObj, new TypeReference<SubfieldDetailsDTO>(){});
+					subfieldsDTO = subfieldsDAO.update(subfieldsDTO);
+					json = mapper.writeValueAsString(subfieldsDTO);
 					response.getWriter().println(json);
 					break;
 				case "delete":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.delete(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					subfieldsDTO = mapper.readValue(dtoObj, new TypeReference<SubfieldDetailsDTO>(){});
+					subfieldsDTO = subfieldsDAO.delete(subfieldsDTO);
+					json = mapper.writeValueAsString(subfieldsDTO);
 					response.getWriter().println(json);
 					break;
 			};
 		} catch (ClassNotFoundException | SQLException e){
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

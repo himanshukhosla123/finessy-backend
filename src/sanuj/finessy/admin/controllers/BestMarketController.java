@@ -1,4 +1,4 @@
-package com.finessy.admin.controllers;
+package sanuj.finessy.admin.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,78 +13,82 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.finessy.admin.DAO.StudentDetailsDAOImpl;
-import com.finessy.admin.DTO.StudentDetailsDTO;
+import com.finessy.admin.DAO.BestMarketDAO;
+import com.finessy.admin.DTO.BestMarketDTO;
 
-@WebServlet(urlPatterns="/studentCtrl")
-public class StudentDetailsCtrl extends HttpServlet {
-
+/**
+ * Servlet implementation class BestMarketController
+ */
+@WebServlet("/BestMarketController")
+public class BestMarketController extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+		// TODO Auto-generated method stub
+		BestMarketDAO bestmarketDAO = new BestMarketDAO();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<StudentDetailsDTO> studentList = null;
+		ArrayList<BestMarketDTO> bestmarketList=null;
 		try {
-			studentList = studentDAO.readAll();
+			bestmarketList = bestmarketDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		json = mapper.writeValueAsString(studentList);
+		json = mapper.writeValueAsString(bestmarketList);
 		response.addHeader("Access-Control-Allow-Origin", "*");
-	    response.addHeader("Access-Control-Allow-Methods", "GET");
+	    response.addHeader("Access-Control-Allow-Methods","GET");
 	    response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
 		response.getWriter().println(json);
-
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		String methodName = (String)request.getParameter("method");
 		String dtoObj = request.getParameter("dto_obj");
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+		BestMarketDAO bestmarketDAO = new BestMarketDAO();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		StudentDetailsDTO studentDTO;
+		BestMarketDTO bestmarketDTO;
 		
 		try{
 			switch(methodName){
 				case "readAll":
-					ArrayList<StudentDetailsDTO> studentList = studentDAO.readAll();
-					json = mapper.writeValueAsString(studentList);
+					ArrayList<BestMarketDTO> bestmarketList = bestmarketDAO.readAll();
+					json = mapper.writeValueAsString(bestmarketList);
 					response.getWriter().println(json);
 					break;
 				case "add":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.add(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					bestmarketDTO = mapper.readValue(dtoObj,new TypeReference<BestMarketDTO>(){});
+					bestmarketDTO = bestmarketDAO.add(bestmarketDTO);
+					json = mapper.writeValueAsString(bestmarketDTO);
 					response.getWriter().println(json);
 					break;
 				case "read":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.read(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					bestmarketDTO = mapper.readValue(dtoObj,new TypeReference<BestMarketDTO>(){});
+					bestmarketDTO = bestmarketDAO.read(bestmarketDTO);
+					json = mapper.writeValueAsString(bestmarketDTO);
 					response.getWriter().println(json);
 					break;
 				case "update":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.update(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					bestmarketDTO = mapper.readValue(dtoObj,new TypeReference<BestMarketDTO>(){});
+					bestmarketDTO = bestmarketDAO.update(bestmarketDTO);
+					json = mapper.writeValueAsString(bestmarketDTO);
 					response.getWriter().println(json);
 					break;
 				case "delete":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
-					studentDTO = studentDAO.delete(studentDTO);
-					json = mapper.writeValueAsString(studentDTO);
+					bestmarketDTO = mapper.readValue(dtoObj,new TypeReference<BestMarketDTO>(){});
+					bestmarketDTO = bestmarketDAO.delete(bestmarketDTO);
+					json = mapper.writeValueAsString(bestmarketDTO);
 					response.getWriter().println(json);
 					break;
 			};
 		} catch (ClassNotFoundException | SQLException e){
 			e.printStackTrace();
 		}
-		
 	}
 
 }

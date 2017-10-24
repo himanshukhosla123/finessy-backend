@@ -13,19 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.finessy.admin.DAO.StudentDetailsDAOImpl;
-import com.finessy.admin.DTO.StudentDetailsDTO;
+import com.finessy.admin.DAO.StudentFormDAOImpl;
+import com.finessy.admin.DTO.StudentFormDTO;
 
-@WebServlet(urlPatterns="/studentCtrl")
-public class StudentDetailsCtrl extends HttpServlet {
+@WebServlet(urlPatterns="/form")
+public class StudentFormCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+
+		StudentFormDAOImpl studentDAO = new StudentFormDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		ArrayList<StudentDetailsDTO> studentList = null;
+		ArrayList<StudentFormDTO> studentList = null;
 		try {
 			studentList = studentDAO.readAll();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -43,39 +43,39 @@ public class StudentDetailsCtrl extends HttpServlet {
 		
 		String methodName = (String)request.getParameter("method");
 		String dtoObj = request.getParameter("dto_obj");
-		StudentDetailsDAOImpl studentDAO = new StudentDetailsDAOImpl();
+		StudentFormDAOImpl studentDAO = new StudentFormDAOImpl();
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
-		StudentDetailsDTO studentDTO;
+		StudentFormDTO studentDTO;
 		
 		try{
 			switch(methodName){
 				case "readAll":
-					ArrayList<StudentDetailsDTO> studentList = studentDAO.readAll();
+					ArrayList<StudentFormDTO> studentList = studentDAO.readAll();
 					json = mapper.writeValueAsString(studentList);
 					response.getWriter().println(json);
 					break;
 				case "add":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
+					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentFormDTO>(){});
 					studentDTO = studentDAO.add(studentDTO);
 					json = mapper.writeValueAsString(studentDTO);
 					response.getWriter().println(json);
 					break;
 				case "read":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
+					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentFormDTO>(){});
 					studentDTO = studentDAO.read(studentDTO);
 					json = mapper.writeValueAsString(studentDTO);
 					response.getWriter().println(json);
 					break;
 				case "update":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
+					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentFormDTO>(){});
 					studentDTO = studentDAO.update(studentDTO);
 					json = mapper.writeValueAsString(studentDTO);
 					response.getWriter().println(json);
 					break;
 				case "delete":
-					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentDetailsDTO>(){});
+					studentDTO = mapper.readValue(dtoObj, new TypeReference<StudentFormDTO>(){});
 					studentDTO = studentDAO.delete(studentDTO);
 					json = mapper.writeValueAsString(studentDTO);
 					response.getWriter().println(json);
@@ -84,7 +84,7 @@ public class StudentDetailsCtrl extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e){
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
